@@ -1,0 +1,35 @@
+<%-include('headers/header'); -%>
+<h1>Your order is</h1>
+<div class="container-fluid">
+
+<%let total=0; 
+
+for(let i=0;i<user.cart.length;i++){%>
+        <div class="row">
+            <div class="col-sm-2" >
+                <img class="cart" src="<%=user.cart[i].image%>" alt="" srcset="">
+            </div>
+            <div class="col-sm-4">
+                <h1><%=user.cart[i].Name%></h1>
+                <h2>Price</h2>
+                <p>Rs <%=user.cart[i].Price%></p>
+                <%total+=Number(user.cart[i].Price)%>
+                <form action="/remove" method="POST">
+                    <button type="submit" name="remove" value="<%=i%>">Remove</button>
+                </form>
+            </div>
+        </div>
+       
+<%}%>
+
+<div id="price">
+    <h1>Total Price</h1>
+    <h2>Rs <%=total%></h2>
+    <%if(total!==0){%>
+    <form action="/buynow" method="post">
+        <button type="submit" id="buy">Buy Now</button>
+    </form>
+    <%}%>
+    </div>
+</div>
+<%-include('headers/footer'); -%>

@@ -1,0 +1,18 @@
+<%-include('headers/header'); -%>
+    <%=user.cart.push(product)%>
+    <%=user.cart[0].Name%>
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="cart" src="<%=product.image%>">
+            <form action="/cart" method="post">
+            </form>
+        </div>
+        <div class="col-sm-6">
+            Quantity
+            <form action="/addcart" method="post">
+            <input type="text" placeholder="Number" name="number">
+            <button type="submit" name="button" value="<%= product._id %>">Confirm</button>
+        </form>
+        </div>
+
+<%-include('headers/footer'); -%>

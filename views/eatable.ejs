@@ -1,0 +1,44 @@
+<%-include('headers/header'); -%>
+<div class="navbar navbar-inverse navbar-fixed-left">
+    <ul class="nav navbar-nav">
+      <li><a href="/food/all">ALL</a></li>
+     <li><a href="/food/burger">Burger</a></li>
+     <li><a href="/food/pizza">Pizza</a></li>
+     <li><a href="/food/noodle">Noodles</a></li>
+     <li><a href="/food/momos">Momos</a></li>
+    </ul>
+  </div>
+  <div class="container">
+   <div class="row">
+   </div>
+  </div>
+    <div class="container-fluid">
+        <div class="row temp">
+          
+            <% for(let i=0;i<result.length;i++){ %>
+                <div class="col-sm-4">
+                    <button id="<%=result[i]._id %>">
+                        <img src="<%=result[i].image%>">
+                        <h1><%=result[i].Name%></h1>
+                        <p>Rs <%=result[i].Price%></p>
+                    </button>
+                </div>
+            <%}%>
+            
+        </div>
+      </div>
+      <script>
+          let $object=[];
+          <% for(var i=0;i<result.length;i++){ %>
+            $object.push(document.getElementById('<%= result[i]._id %>'));
+            console.log('<%= result[i]._id %>')
+          <% } %>
+
+          for(let i=0;i<$object.length;i++){
+            $object[i].addEventListener('click',(event)=>{
+                window.location=`/object/${event.path[1].id}`
+            });
+          }
+          
+      </script>
+      <%-include('headers/footer'); -%>
